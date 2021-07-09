@@ -1,0 +1,97 @@
+
+
+{% extends "base.html" %}  
+{% load static %}
+
+
+
+
+
+
+{% block Page_Title  %}
+<h1>List of Association</h1>
+{% endblock Page_Title %}  
+
+
+
+
+
+
+{% block messages_Contents  %}
+
+<!-- ظهور رسالة للمستخدم -->
+{% if messages %} <!-- جملة شرطية للتحقق من وجود رسالة قبل عرضها-->
+        {% for message in messages %} <!-- جملة تكرار للمرور على جميع  محتويات الرسالة لعرضها كلها -->
+                <!--success: هي التي تقوم بتحديد لون الرسالة اخضر -->
+                <!--warning: هي التي تقوم بتحديد لون الرسالة احمر -->
+                <div  class="alert alert-success">
+                        {{ message }} <!-- المتغير الذي يحمل نص الرسالة-->
+                </div>
+        {% endfor %}
+{% endif %}
+
+{% endblock messages_Contents %}  
+
+
+
+
+
+
+{% block Contents_Page %} 
+
+
+
+
+
+
+<div>
+<a  href="{% url 'AssociationCreateView-add-URL' %}" role="button" style="float:right" class="btn btn-success">Add New</a><!-- إضافة سجل جديد -->
+<br>
+</div>
+<br>
+
+<table class="table table-bordered">
+<tr>
+<td>Association Logo</td>
+<td> Link</td>
+<td>Name Association</td>
+<td>Slug</td>
+<td>Address</td>
+<td>Mobile</td>
+<td>Phone</td>
+<td>Email</td>
+<td>Bank Account</td>
+<td>Actions</td>
+
+</tr>
+{%  if object_list %}  <!--conditional Statement to Check For Data -->
+<!--
+Loop To Pass through All The Data to Be displayed
+-->
+{% for object_list_item in object_list %} 
+
+<tr>
+<td><img src="{{ object_list_item.ASS_AssociationLogo.url}}" alt="" width="150" height="90"></td>
+<td><a href="{{ object_list_item.get_absolute_url }}">{{ object_list_item.ASS_NameAssociation }}</a> ({{object_list_item.ASS_Phone}})</td> <!-- This Link Is From The Database and usls.py File-->
+<td>{{ object_list_item.ASS_NameAssociation }}</td>
+<td>{{ object_list_item.ASS_Slug }}</td>
+<td>{{ object_list_item.ASS_Address }}</td>
+<td>{{ object_list_item.ASS_Mobile }}</td>
+<td>{{ object_list_item.ASS_Phone }}</td>
+<td>{{ object_list_item.ASS_Email }}</td>
+<td>{{ object_list_item.ASS_BankAccount }}</td>
+
+<td>
+<a href="{% url 'AssociationUpdateView-update-URL'   object_list_item.id %}" class="btn btn-primary">Update</a><!-- Update Record   -->
+<a href="{% url 'AssociationDeleteView-delete-URL'   object_list_item.id %}" class="btn btn-danger">Delete</a><!--  Delete Record  -->
+<a href="{% url 'AssociationDetailViewID-detail-URL' object_list_item.id %}" class="btn btn-warning">Detail</a><!-- Detail Record  -->
+
+</td>
+</tr>
+{% endfor %}
+{% else %}
+    <h4>There are No Data.</h4>
+  {% endif %} 
+</table>
+
+{% endblock Contents_Page %} 

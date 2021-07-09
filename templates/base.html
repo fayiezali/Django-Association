@@ -1,0 +1,248 @@
+
+{% load static %}
+<link href="{% static 'css/bootstrap.min.css'%}" rel="stylesheet">
+
+{% if user.is_authenticated %}
+
+
+
+<!-- Base.html - Header_Page Start ---------------------------- -->
+<header class="px-3 py-2 bg-dark text-white">
+  <div class="container">
+    <div class="d-flex flex-wrap align-items-center justify-content-center justify-content-lg-start">
+      <a href="/" class="d-flex  my-0 my-lg-0 me-lg-auto text-white text-decoration-none">
+        <svg class="bi me-2" width="40" height="32"><use xlink:href="#bootstrap"/></svg>
+      </a>
+
+<!-- Base.html - Menu_Start ---------------------------- -->
+      <div class="col-6 col-md">
+        <h5>Dashboard</h5>
+        <ul class="list-unstyled text-small">
+          <li><a class="link-secondary" href="{% url 'IndexHomeTemplateView-URL' %}">Home</a></li>
+          <li><a class="link-secondary" href="{% url 'AboutTemplateView-URL' %}">About</a></li>
+          <li><a class="link-secondary" href="#">03</a></li>
+
+        </ul>
+      </div>
+      
+      <div class="col-6 col-md">
+        <h5>Association</h5>
+        <ul class="list-unstyled text-small">
+          <li><a class="link-secondary" href="{% url 'AssociationCreateView-add-URL' %}">Add New</a></li>
+          <li><a class="link-secondary" href="{% url 'AssociationListView-list-URL' %}">List</a></li>
+          <li><a class="link-secondary" href="#">Search</a></li>
+
+        </ul>
+      </div>
+
+      <div class="col-6 col-md">
+        <h5>Financial</h5>
+        <ul class="list-unstyled text-small">
+          <li><a class="link-secondary" href="#">01</a></li>
+          <li><a class="link-secondary" href="#">02</a></li>
+          <li><a class="link-secondary" href="#">03</a></li>
+
+        </ul>
+      </div>
+      
+      <div class="col-6 col-md">
+        <h5>Housing</h5>
+        <ul class="list-unstyled text-small">
+          <li><a class="link-secondary" href="#">01</a></li>
+          <li><a class="link-secondary" href="#">02</a></li>
+          <li><a class="link-secondary" href="#">03</a></li>
+
+        </ul>
+      </div>
+
+      <div class="col-6 col-md">
+        <h5>Personal</h5>
+        <ul class="list-unstyled text-small">
+          <li><a class="link-secondary" href="#">01</a></li>
+          <li><a class="link-secondary" href="#">02</a></li>
+          <li><a class="link-secondary" href="#">03</a></li>
+        </ul>
+      </div>
+      
+      <div class="col-6 col-md">
+        <h5>Settings</h5>
+        <ul class="list-unstyled text-small">
+          <li><a class="link-secondary" href="{% url 'SignUpView-signup-URL' %}">Signup</a></li>        
+          <li><a class="link-secondary" href="#">03</a></li>
+        </ul>
+      </div>
+      
+      <div class="col-6 col-md">
+        <h5>E</h5>
+        <ul class="list-unstyled text-small">
+          <li><a class="link-secondary" href="#">01</a></li>
+          <li><a class="link-secondary" href="#">02</a></li>
+          <li><a class="link-secondary" href="#">03</a></li>
+        </ul>
+      </div>
+      
+      <div class="col-6 col-md">
+        <h5>F</h5>
+        <ul class="list-unstyled text-small">
+          <li><a class="link-secondary" href="#">01</a></li>
+          <li><a class="link-secondary" href="#">02</a></li>
+          <li><a class="link-secondary" href="#">03</a></li>
+        </ul>
+      </div>
+<!-- Base.html - Menu_End ---------------------------- -->
+          <a href="#" class="nav-link text-white">
+          
+          <a href="#" class="d-block link-dark text-decoration-none dropdown-toggle" id="dropdownUser1" data-bs-toggle="dropdown" aria-expanded="false">
+          <!--  - رابط اللوقو/Logo + الصفحة الرئيسية  -->
+            <img  src="{% static 'Project_logo.png' %}" alt="mdo" width="50" height="50" class="rounded-circle">
+            <!-- <link rel="shortcut icon" type="image/x-icon" href="{% static 'static_file/img/favicon.png' %}"> -->
+          </a>
+          <p>You have visited this page ( {{ number_of_visits_site }} ).</p>
+
+          <ul class="dropdown-menu text-small" aria-labelledby="dropdownUser1">
+            <li><a class="dropdown-item" href="#">New project...</a></li>
+            <li><a class="dropdown-item" href="#">Settings</a></li>
+            <li><a class="dropdown-item" href="#">Profile</a></li>
+            <li><hr class="dropdown-divider"></li>
+            <li><a class="dropdown-item" href="#">Sign out</a></li>
+          </ul>
+        </a>
+      </li>
+
+      </ul>
+    </div>
+  </div>
+  <div class="px-3 py-2 border-bottom mb-3">
+    <div class="container d-flex flex-wrap justify-content-center">
+      <form class="col-12 col-lg-auto mb-2 mb-lg-0 me-lg-auto">
+        <input type="search" class="form-control" placeholder="Search...">
+      </form>
+  
+      <div class="text-end">
+        <p> Welcom ( {{ user.username }} ) Thanks For Logging</p>
+        <a  href="{% url 'LogoutView-logout-URL' %}" role="button" style="float:lieft"  class="btn btn-light text-dark me-2">Logout</a><!-- الخروج من الموقع -->
+        <a  href="#" role="button" style="float:lieft"  class="btn btn-light text-dark me-2">00</a><!--  -->
+      
+      </div>
+    </div>
+  </div>
+  
+      <script src="../assets/dist/js/bootstrap.bundle.min.js"></script>
+</header>
+<!--  Base.html - Header_Page End ------------------------------ -->
+
+{% else %}
+<p>You have visited this page ( {{ number_of_visits_site }} ).</p>
+
+<br>
+  <p>Welcome  Visitor You are Not Logged In</p>
+  <a  href="{% url 'UserLoginView-login-URL' %}" role="button" style="float:lieft" class="btn btn-success">Login</a><!-- الدخول إلى الموقع -->
+  <a  href="{% url 'SignUpView-signup-URL' %}" role="button" style="float:lieft" class="btn btn-primary">Sign-up</a><!-- الدخول إلى الموقع -->
+
+
+{% endif %}
+
+
+
+
+<!--- Base.html - Title_Page Start  ----------------------------- -->
+<div class="container">
+{% block Page_Title  %} 
+{% endblock Page_Title %}  
+</div>
+<!--- Base.html - Title_Page End' ------------------------------- -->
+
+
+
+
+
+
+<!--- Base.html - Messages_Contenst_Start  ---------------------- -->
+<div class="container">
+{% block messages_Contents  %}
+{% endblock messages_Contents %}  
+</div>
+<!--- Base.html - Messages_Contents_End' ----------------------- -->
+
+
+
+
+
+
+<!--- Base.html - Contents_Page Start --------------------------- -->
+<div class="container">
+{% block Contents_Page %} 
+{% endblock Contents_Page %} 
+</div>
+<!--- Base.html - Contents_Page End ----------------------------- -->
+
+
+{% block Pagination %}
+
+{% for contact in page_obj %}
+    {# Each "contact" is a Contact model object. #}
+    {{ contact.full_name|upper }}<br>
+    ...
+{% endfor %}
+
+<div class="pagination">
+      <span class="step-links">
+            {% if page_obj.has_previous %}
+            <a href="?page=1"> |< FIRST</a>
+            <a href="?page={{ page_obj.previous_page_number }}"> << PREVIOUS </a>
+            {% endif %}
+
+            <span class="current">
+                  Page {{ page_obj.number }} of {{ page_obj.paginator.num_pages }}.
+            </span>
+
+            {% if page_obj.has_next %}
+                  <a href="?page={{ page_obj.next_page_number }}"> NEXT >> </a>
+                  <a href="?page={{ page_obj.paginator.num_pages }}"> LAST >|</a>
+            {% endif %}
+      </span>
+</div>
+
+  {% endblock Pagination %} 
+
+
+
+
+<!--  Base.html - Footer_Page Start- ---------------------------- -->
+<footer class="container py-5">
+    <div class="row">
+      <div class="col-12 col-md">
+        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" class="d-block mb-2" role="img" viewBox="0 0 24 24"><title>Product</title><circle cx="12" cy="12" r="10"/><path d="M14.31 8l5.74 9.94M9.69 8h11.48M7.38 12l5.74-9.94M9.69 16L3.95 6.06M14.31 16H2.83m13.79-4l-5.74 9.94"/></svg>
+        <small class="d-block mb-3 text-muted">&copy; 2021–2022</small>
+      </div>
+      <div class="col-6 col-md">
+        <h5>Features</h5>
+        <ul class="list-unstyled text-small">
+          <li><a class="link-secondary" href="#">Cool stuff</a></li>
+          <li><a class="link-secondary" href="#">Stuff for developers</a></li>
+        </ul>
+      </div>
+      <div class="col-6 col-md">
+        <h5>Resources</h5>
+        <ul class="list-unstyled text-small">
+          <li><a class="link-secondary" href="#">Resource name</a></li>
+          <li><a class="link-secondary" href="#">Resource</a></li>
+        </ul>
+      </div>
+      <div class="col-6 col-md">
+        <h5>Resources</h5>
+        <ul class="list-unstyled text-small">
+          <li><a class="link-secondary" href="#">Business</a></li>
+          <li><a class="link-secondary" href="#">Education</a></li>
+        </ul>
+      </div>
+      <div class="col-6 col-md">
+        <h5>About</h5>
+        <ul class="list-unstyled text-small">
+          <li><a class="link-secondary" href="#">Team</a></li>
+          <li><a class="link-secondary" href="#">Locations</a></li>
+        </ul>
+      </div>
+    </div>
+  </footer>
+<!--- Base.html - Footer_Page End ------------------------------- -->

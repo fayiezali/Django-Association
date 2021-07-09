@@ -1,0 +1,177 @@
+
+
+{% extends "base.html" %}  
+{% load static %}
+
+
+
+
+
+
+{% block Page_Title  %}
+<h1>Association Data Details By Slug</h1>
+{% endblock Page_Title %}  
+
+
+
+
+
+
+{% block messages_Contents  %}
+<!-- {% for copy in book.bookinstance_set.all %}
+<hr>
+<p class="{% if copy.status == 'a' %}text-success{% elif copy.status == 'd' %}text-danger{% else %}text-warning{% endif %}">{{ copy.get_status_display }}</p> -->
+
+<!-- ظهور رسالة للمستخدم -->
+{% if messages %} <!-- جملة شرطية للتحقق من وجود رسالة قبل عرضها-->
+        {% for message in messages %} <!-- جملة تكرار للمرور على جميع  محتويات الرسالة لعرضها كلها -->
+                <!--success: هي التي تقوم بتحديد لون الرسالة اخضر -->
+                <!--warning: هي التي تقوم بتحديد لون الرسالة احمر -->
+                <div  class="alert alert-success">
+                        {{ message }} <!-- المتغير الذي يحمل نص الرسالة-->
+                </div>
+        {% endfor %}
+{% endif %}
+
+{% endblock messages_Contents %}  
+
+
+
+
+{% block Contents_Page %} 
+
+<!doctype html>
+<html lang="en">
+
+<body class="bg-light">
+    
+<div class="container">
+<main>
+
+    <div class="row g-5">
+
+    <div class="col-md-7 col-lg-8">
+
+        <form class="needs-validation" novalidate>
+        <div class="row g-3">objectd is required.
+                </div>
+            </div>
+            <div class="col-12">
+                <label for="firstName" class="form-label">Image Association</label>
+                <div class="col-sm-4">
+                </div>
+                <img src="{{ object.ASS_AssociationLogo.url}}" alt="" width="150" height="90">
+                
+                <div class="invalid-feedback">
+                    The field is required.
+                </div>
+            </div>
+            
+            <div class="col-12">
+                <label for="firstName" class="form-label">ID Association</label>
+                <div class="col-sm-4">
+                </div>
+                <input type="text" disabled="true" class="form-control" id="NameAssociation" placeholder="{{ object.pk }}" required>
+                <div class="invalid-feedback">
+                    The field is required.
+                </div>
+            </div>
+
+            <div class="col-12">
+                <label for="firstName" class="form-label">Name Association</label>
+                <div class="col-sm-4">
+                </div>
+                <input type="text" disabled="true" class="form-control" id="NameAssociation" placeholder="{{ object.ASS_NameAssociation }}" required>
+                <div class="invalid-feedback">
+                    The field is required.
+                </div>
+            </div>
+
+
+
+                <div class="col-sm-6">
+                <label for="firstName" class="form-label"> Slug Association</label>
+                <input type="text" disabled="true" class="form-control" id="firstName" placeholder="{{ object.ASS_Slug }}" value="" required>
+                <div class="invalid-feedback">
+                    The field is required.
+                </div>
+                </div>
+
+
+
+                <div class="col-12">
+                    <label for="firstName" class="form-label">Association Logo</label>
+                    <input type="text" disabled="true" class="form-control" id="firstName" placeholder="{{ object.ASS_AssociationLogo }}" required>
+                    <div class="invalid-feedback">
+                        The field is required.
+                    </div>
+                </div>
+                <hr class="my-4">
+
+
+
+                <div class="col-12">
+                    <label for="address" class="form-label">Address</label>
+                    <input type="text" disabled="true" class="form-control" id="address" placeholder="{{ object.ASS_Address }}" required>
+                    <div class="invalid-feedback">
+                        The field is required.
+                    </div>
+                </div>
+
+
+
+                <div class="col-md-3">
+                    <label for="zip" class="form-label">Mobile</label>
+                    <input type="text" disabled="true" class="form-control" id="zip" placeholder="{{ object.ASS_Mobile }}" required>
+                    <div class="invalid-feedback">
+                        The field is required.
+                    </div>
+                </div>
+                </div>
+
+
+
+                <div class="col-md-3">
+                    <label for="zip" class="form-label">Phone</label>
+                    <input type="text" disabled="true" class="form-control" id="zip" placeholder="{{ object.ASS_Phone }}" required>
+                    <div class="invalid-feedback">
+                        The field is required.
+                    </div>
+                </div>
+                </div>
+
+
+
+            <div class="col-12">
+            <label for="email" class="form-label">Email</label>
+            <input type="email" disabled="true" class="form-control" id="email" placeholder="{{ object.ASS_Email }}" required>
+            <div class="invalid-feedback">
+                The field is required.
+            </div>
+            </div>
+            <hr class="my-4">
+
+
+
+            <div class="col-md-6">
+                <label for="cc-number" class="form-label">Bank Account</label>
+                <input type="text" disabled="true" class="form-control" id="cc-number" placeholder="{{ object.ASS_BankAccount }}" required>
+                <div class="invalid-feedback">
+                    The field is required.
+                </div>
+            </div>
+            <hr class="my-4">
+
+            <a href="{% url 'AssociationUpdateView-update-URL' object.id %}" class="btn btn-primary">Edite</a>
+            <a href="{% url 'AssociationListView-list-URL' %}" class="btn btn-warning">Cancel</a>
+            </form>
+    </div>
+    </div>
+</main>
+</body>
+</html>
+
+
+
+
+{% endblock Contents_Page %} 
