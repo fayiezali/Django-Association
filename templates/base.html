@@ -67,8 +67,9 @@
       <div class="col-6 col-md">
         <h5>Settings</h5>
         <ul class="list-unstyled text-small">
-          <li><a class="link-secondary" href="{% url 'SignUpView-signup-URL' %}">Signup</a></li>        
-          <li><a class="link-secondary" href="#">03</a></li>
+          <li><a class="link-secondary" href="{% url 'My_Signup_URL' %}">Signup</a></li>        
+          <li><a class="link-secondary" href="{% url 'My_PasswordChange_URL' %}">Change Password</a></li>
+          <li><a class="link-secondary" href="{% url 'My_PasswordReset_URL' %}">password_reset</a></li>
         </ul>
       </div>
       
@@ -120,7 +121,7 @@
   
       <div class="text-end">
         <p> Welcom ( {{ user.username }} ) Thanks For Logging</p>
-        <a  href="{% url 'LogoutView-logout-URL' %}" role="button" style="float:lieft"  class="btn btn-light text-dark me-2">Logout</a><!-- الخروج من الموقع -->
+        <a  href="{% url 'My_Logout_URL' %}" role="button" style="float:lieft"  class="btn btn-light text-dark me-2">Logout</a><!-- الخروج من الموقع -->
         <a  href="#" role="button" style="float:lieft"  class="btn btn-light text-dark me-2">00</a><!--  -->
       
       </div>
@@ -136,8 +137,8 @@
 
 <br>
   <p>Welcome  Visitor You are Not Logged In</p>
-  <a  href="{% url 'UserLoginView-login-URL' %}" role="button" style="float:lieft" class="btn btn-success">Login</a><!-- الدخول إلى الموقع -->
-  <a  href="{% url 'SignUpView-signup-URL' %}" role="button" style="float:lieft" class="btn btn-primary">Sign-up</a><!-- الدخول إلى الموقع -->
+  <a  href="{% url 'My_Login_URL' %}" role="button" style="float:lieft" class="btn btn-success">Login</a><!-- الدخول إلى الموقع -->
+  <a  href="{% url 'My_Signup_URL' %}" role="button" style="float:lieft" class="btn btn-primary">Signup New</a><!-- الدخول إلى الموقع -->
 
 
 {% endif %}

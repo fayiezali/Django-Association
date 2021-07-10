@@ -19,13 +19,16 @@ from saving.views import * # تم استيراد كل الفانكشن/الوظ�
 from django.conf import settings
 from django.conf.urls.static import static
 from django.views.generic.base import TemplateView
-
+#
+#
 urlpatterns = [
     path('admin/'    , admin.site.urls),# Go To The urs.py File In This app
     path('saving/'          , include('saving.urls')),# Go To The urs.py File In This app
     # path('accounts/', include('accounts.urls')),# Go To the urs.py file In This app
     
     ] 
+#
+#
 urlpatterns += [
     path(''          , IndexHomeTemplateView.as_view(), name='IndexHomeTemplateView-URL'),
     path('about/'    , AboutTemplateView.as_view(), name='AboutTemplateView-URL'),
@@ -37,7 +40,8 @@ urlpatterns += [
 urlpatterns += [
     path('accounts/', include('accounts.urls')),
 ]
-
+#
+#
 if settings.DEBUG:
     urlpatterns += static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
     urlpatterns += static(settings.MEDIA_URL,  document_root=settings.MEDIA_ROOT)

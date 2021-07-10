@@ -7,7 +7,7 @@ from django.urls import reverse  # To generate URLS by reversing URL patterns
 from django.db.models.signals import post_save
 from django.dispatch import receiver
 #
-from saving.models import *
+from saving.models import  AssociationData_MODEL
 #
 from django_countries.fields import CountryField
 #

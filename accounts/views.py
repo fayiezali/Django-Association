@@ -10,10 +10,10 @@ from django.contrib.auth import (
 # from django.contrib.auth.decorators import login_required
 #
 from django.contrib.auth.forms import (
-    AuthenticationForm, PasswordChangeForm, PasswordResetForm, SetPasswordForm,
+    AuthenticationForm, PasswordChangeForm , PasswordResetForm, SetPasswordForm,
 )
 #
-from django.contrib.auth.views import LoginView , LogoutView , TemplateView , FormView
+from django.contrib.auth.views import LoginView , LogoutView , TemplateView , PasswordChangeView , PasswordResetView
 #
 from django.utils import timezone
 #
@@ -31,8 +31,8 @@ from django.urls import reverse_lazy
 #
 #
 # Log In The System
-class UserLoginView(LoginView):
-    template_name = 'registration/login.html'  # The Page HTML to Display
+class My_Login(LoginView):
+    template_name = 'registration/my_login.html'  # The Page HTML to Display
     #
     #
     # extra_context = None
@@ -48,20 +48,8 @@ class UserLoginView(LoginView):
 #
 #
 # Log Out Of The System:
-class LogoutView(LogoutView):
-    template_name = 'registration/logout.html'
-#
-#
-#
-#
-#
-#
-# Registration New User
-class SignUpView(CreateView):
-    # form_class = UserCreationForm # This Registration Form From Django
-    form_class = SignUpForm # This Registration Form From (accounts/forms.py)
-    template_name = 'registration/signup.html'# User Registration Page HTML
-    success_url = reverse_lazy('IndexHomeTemplateView-URL') # Go To In This Page After Registration
+class My_Logout(LogoutView):
+    template_name = 'registration/my_logout.html'
 #
 #
 #
@@ -69,64 +57,80 @@ class SignUpView(CreateView):
 #
 #
 # Display Them About Page
-class LogoutDoneTemplateView(TemplateView):
-    template_name = 'registration/logout_done.html' # The Page HTML to Display
+class My_LogoutDone(TemplateView):
+    template_name = 'registration/my_logout_done.html' # The Page HTML to Display
 #
 #
 #
 #
 #
 #
-class PasswordChangeView(FormView):
-    form_class = PasswordChangeForm
-    success_url = reverse_lazy('password_change_done')
-    template_name = 'registration/password_change_form.html'
-    title = ('Password change')
+# Registration New User
+class My_Signup(CreateView):
+    # form_class = UserCreationForm # This Registration Form From Django
+    form_class = SignUpForm # This Registration Form From (accounts/forms.py)
+    template_name = 'registration/my_signup.html'# User Registration Page HTML
+    success_url = reverse_lazy('IndexHomeTemplateView-URL') # Go To In This Page After Registration
 #
 #
 #
 #
 #
 #
+class My_PasswordChange(PasswordChangeView):
+    template_name = 'registration/my_password_change.html' 
+    success_url = reverse_lazy('My_PasswordChangeDone_URL')
+#
+# 
+#
+#
+#
+#
+class My_PasswordChangeDone(TemplateView):
+    template_name = 'registration/my_password_change_done.html'
+    title = ('password change successful')
 
 
-# class PasswordResetView(PasswordContextMixin, FormView):
-#     email_template_name = 'registration/password_reset_email.html'
-#     extra_email_context = None
-#     form_class = PasswordResetForm
-#     from_email = None
-#     html_email_template_name = None
-#     subject_template_name = 'registration/password_reset_subject.txt'
-#     success_url = reverse_lazy('password_reset_done')
-#     template_name = 'registration/password_reset_form.html'
-#     title = _('Password reset')
-#     token_generator = default_token_generator
+from urllib.parse import urlparse, urlunparse
 
-#     @method_decorator(csrf_protect)
-#     def dispatch(self, *args, **kwargs):
-#         return super().dispatch(*args, **kwargs)
+from django.conf import settings
+# Avoid shadowing the login() and logout() views below.
+from django.contrib.auth import (
+    REDIRECT_FIELD_NAME, get_user_model, login as auth_login,
+    logout as auth_logout, update_session_auth_hash,
+)
+from django.contrib.auth.decorators import login_required
+from django.contrib.auth.forms import (
+    AuthenticationForm, PasswordChangeForm, PasswordResetForm, SetPasswordForm,
+)
+from django.contrib.auth.tokens import default_token_generator
+from django.urls import reverse_lazy
+from django.utils.decorators import method_decorator
+from django.utils.translation import gettext_lazy as _
+from django.views.decorators.csrf import csrf_protect
+from django.views.generic.base import TemplateView
 
-#     def form_valid(self, form):
-#         opts = {
-#             'use_https': self.request.is_secure(),
-#             'token_generator': self.token_generator,
-#             'from_email': self.from_email,
-#             'email_template_name': self.email_template_name,
-#             'subject_template_name': self.subject_template_name,
-#             'request': self.request,
-#             'html_email_template_name': self.html_email_template_name,
-#             'extra_email_context': self.extra_email_context,
-#         }
-#         form.save(**opts)
-#         return super().form_valid(form)
+UserModel = get_user_model()
+
+class My_PasswordReset(PasswordResetView):
+    email_template_name = 'registration/my_password_reset_email.html'
+    extra_email_context = None
+    form_class = PasswordResetForm
+    from_email = None
+    html_email_template_name = None
+    subject_template_name = 'registration/password_reset_subject.txt'
+    success_url = reverse_lazy('My_PasswordResetDone_URL')
+    template_name = 'registration/my_password_reset.html'
+    title = _('Password reset')
+    token_generator = default_token_generator
 
 
-# INTERNAL_RESET_SESSION_TOKEN = '_password_reset_token'
+INTERNAL_RESET_SESSION_TOKEN = '_password_reset_token'
 
 
-# class PasswordResetDoneView(PasswordContextMixin, TemplateView):
-#     template_name = 'registration/password_reset_done.html'
-#     title = _('Password reset sent')
+class My_PasswordResetDone(TemplateView):
+    template_name = 'registration/my_password_reset_done.html'
+    title = _('Password reset sent')
 
 
 # class PasswordResetConfirmView(PasswordContextMixin, FormView):
