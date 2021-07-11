@@ -67,8 +67,7 @@ class AboutTemplateView(TemplateView):
 # Create New Record
 class AssociationCreateView(LoginRequiredMixin , CreateView):
     model = AssociationData_MODEL # Data Table
-    # (fields = '__all__') Not recommended (potential security issue if more fields added)
-    fields = ['ASS_NameAssociation', 
+    fields = ['ASS_NameAssociation', # Fields Table
                 'ASS_Slug', 
                 'ASS_AssociationLogo', 
                 'ASS_Address',
@@ -135,7 +134,15 @@ class AssociationDetailViewID(LoginRequiredMixin , DetailView):
 # Update Record.
 class AssociationUpdateView(LoginRequiredMixin , UpdateView):
     model = AssociationData_MODEL # Data Table
-    fields = '__all__'# Table Fields
+    fields = ['ASS_NameAssociation', # Fields Table
+                'ASS_Slug', 
+                'ASS_AssociationLogo', 
+                'ASS_Address',
+                'ASS_Mobile', 
+                'ASS_Phone', 
+                'ASS_Email',
+                'ASS_BankAccount',
+                ]
     success_url = reverse_lazy('AssociationListView-list-URL') # Go To In This Page After Add/Create New
 #
 #

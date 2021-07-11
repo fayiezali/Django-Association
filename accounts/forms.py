@@ -2,6 +2,7 @@ from django import forms
 from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth.models import User
 
+# Create/Signup Profile For User
 # The model that is customized 
 class SignUpForm(UserCreationForm):
     # Customization 3 fields In Form Signup.
@@ -12,10 +13,26 @@ class SignUpForm(UserCreationForm):
     class Meta:
         model=User # Data Table
         fields = {'username','email','password1','password2'} # Table Fields
-        labels = {'username': ('User Name')}
-        labels = {'Password1': ('Password')}
-        labels = {'password2': ('Confirm Passwoerd')}
+        labels = {'username': ('User Name')} # change the Field Title
+        labels = {'Password1': ('Password')} # change the Field Title
+        labels = {'password2': ('Confirm Passwoerd')} # change the Field Title
+#
+#
+#
+#
+#
+#
+# Profile Update
+class ProfileUpdateForm(forms.ModelForm):
 
+    class Meta:
+        model = User # Data Table
+        fields = [ # Fields Table
+            'username',
+            'first_name', 
+            'last_name', 
+            'email',
+            ]
 
         # help_texts = {'due_back': _('Enter a date between now and 4 weeks (default 3).')} 
         

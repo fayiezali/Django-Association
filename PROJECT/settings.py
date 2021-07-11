@@ -149,3 +149,10 @@ LOGOUT_REDIRECT_URL = 'My_LogoutDone_URL' # Go To LogoutDone.html Page HTML
 
 EMAIL_BACKEND = "django.core.mail.backends.filebased.EmailBackend"
 EMAIL_FILE_PATH = str(BASE_DIR.joinpath('sent_emails'))
+
+# EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
+# EMAIL_HOST = 'smtp.gmail.com' # mail service smtp
+# EMAIL_HOST_USER = '' # email id
+# EMAIL_HOST_PASSWORD = '' #password
+# EMAIL_PORT = 587
+# EMAIL_USE_TLS = True

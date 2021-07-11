@@ -3,10 +3,15 @@ from django.conf import settings
 #
 # Avoid shadowing the login() and logout() views below.
 from django.contrib.auth import (
-    REDIRECT_FIELD_NAME, get_user_model, login as auth_login,
+    REDIRECT_FIELD_NAME, get_user_model, login as auth_login, 
     logout as auth_logout, update_session_auth_hash,
 )
 #
+from django.contrib.auth.models import User # إستيراد اسم المستخدم
+#
+# Only a Logged In User can call this view
+from django.contrib.auth.mixins import LoginRequiredMixin , PermissionRequiredMixin
+
 # from django.contrib.auth.decorators import login_required
 #
 from django.contrib.auth.forms import (
@@ -19,9 +24,9 @@ from django.utils import timezone
 #
 from django.views import generic
 #
-from django.views.generic import CreateView 
+from django.views.generic import TemplateView , ListView ,DetailView , CreateView, DeleteView, UpdateView
 #
-from accounts.forms import SignUpForm
+from accounts.forms import SignUpForm , ProfileUpdateForm
 #
 from django.urls import reverse_lazy
 #
@@ -71,6 +76,97 @@ class My_Signup(CreateView):
     form_class = SignUpForm # This Registration Form From (accounts/forms.py)
     template_name = 'registration/my_signup.html'# User Registration Page HTML
     success_url = reverse_lazy('IndexHomeTemplateView-URL') # Go To In This Page After Registration
+#
+#
+#
+#
+#
+#
+# Display List Record
+class my_profile_list(LoginRequiredMixin , ListView):
+    model = User # Data Table
+    paginate_by = 4  # if pagination is desired
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['now'] = timezone.now() # Data To Be Sent
+        return context # Send This Data To The Required Page HTML
+    template_name = 'registration/my_profile_list.html'
+#
+#
+#
+#
+#
+#
+# Display Detail Record By: Slug
+# class My_Profile_Detail_Slug(LoginRequiredMixin ,  DetailView):
+#     model = User # Data Table
+#     slug_field = 'ASS_Slug' # Filter Field Use 'Slug'
+#     template_name = 'registration/my_profile_detail_slug.html'
+#     # def get_context_data(self, **kwargs):
+#     #     context = super().get_context_data(**kwargs)
+#     #     context['now'] = timezone.now() # Data To Be Sent
+#     #     context['My_Object'] # Data To Be Sent
+#     #     return context # Send This Data To The Required Page HTML
+#     template_name = 'registration/my_profile_detail_slug.html'
+
+#
+#
+#
+#
+#
+#
+## Display Detail Record By: ID
+class My_Profile_Detail_ID(LoginRequiredMixin , DetailView):
+    model = User # Data Table
+    slug_field = 'pk' # Filter Field Use 'PK"
+    context_object_name = 'My_Object' 
+    template_name = 'registration/my_profile_detail_ID.html'
+
+#
+#
+#
+#
+#
+#
+# Update Profile.
+class My_ProfileUpdate(UpdateView):
+        model = User # Data Table
+        fields = [ # Fields Table
+            'last_login',
+            'is_superuser', 
+            'username', 
+            'last_name',
+            'email',
+            'is_staff', 
+            'is_active', 
+            'date_joined',
+            'first_name',
+            ]
+        template_name = 'registration/My_ProfileUpdate.html'
+        success_url = reverse_lazy('IndexHomeTemplateView-URL') # Go To In This Page After Add/Create New
+#
+#
+#
+#
+#
+#
+# Delete Record.
+class My_ProfileDelete(LoginRequiredMixin  , DeleteView):
+    model = User # Data Table
+    template_name = 'registration/my_profile_confirm_delete.html'
+    success_url = reverse_lazy('IndexHomeTemplateView-URL') # Go To In This Page After Add/Create New
+
+
+
+
+
+
+
+
+
+
+
+
 #
 #
 #

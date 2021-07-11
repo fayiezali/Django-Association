@@ -1,8 +1,18 @@
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 8bit
+Subject: Password reset on 127.0.0.1:8000
+From: webmaster@localhost
+To: fayiez@outlook.com
+Date: Sun, 11 Jul 2021 05:17:22 -0000
+Message-ID: <162598064297.2547.2919869275858107805@localhost.localdomain>
 
-{% load static %}
-<link href="{% static 'css/bootstrap.min.css'%}" rel="stylesheet">
 
-{% if user.is_authenticated %}
+
+
+<link href="/static/css/bootstrap.min.css" rel="stylesheet">
+
+
 
 
 
@@ -18,18 +28,27 @@
       <div class="col-6 col-md">
         <h5>Dashboard</h5>
         <ul class="list-unstyled text-small">
-          <li><a class="link-secondary" href="{% url 'IndexHomeTemplateView-URL' %}">Home</a></li>
-          <li><a class="link-secondary" href="{% url 'AboutTemplateView-URL' %}">About</a></li>
+          <li><a class="link-secondary" href="/">Home</a></li>
+          <li><a class="link-secondary" href="/about/">About</a></li>
           <li><a class="link-secondary" href="#">03</a></li>
 
         </ul>
       </div>
       
+      <nav>
+        <ul>
+            <li>Brand</li>
+            <li>Contact</li>
+            <li>About</li>
+        </ul>
+    </nav>
+      
+      
       <div class="col-6 col-md">
         <h5>Association</h5>
         <ul class="list-unstyled text-small">
-          <li><a class="link-secondary" href="{% url 'AssociationCreateView-add-URL' %}">Add New</a></li>
-          <li><a class="link-secondary" href="{% url 'AssociationListView-list-URL' %}">List</a></li>
+          <li><a class="link-secondary" href="/saving/association/add/">Add New</a></li>
+          <li><a class="link-secondary" href="/saving/associationlist/">List</a></li>
           <li><a class="link-secondary" href="#">Search</a></li>
 
         </ul>
@@ -67,23 +86,18 @@
       <div class="col-6 col-md">
         <h5>Settings</h5>
         <ul class="list-unstyled text-small">
-          <li><a class="link-secondary" href="{% url 'My_PasswordChange_URL' %}">Change Password</a></li>
-          <li><a class="link-secondary" href="{% url 'My_PasswordReset_URL' %}">password_reset</a></li>
-          <li><a class="link-secondary" href="#">01</a></li>  
-
+          <li><a class="link-secondary" href="/accounts/my_signup/">Signup</a></li>        
+          <li><a class="link-secondary" href="/accounts/my_password_change/">Change Password</a></li>
+          <li><a class="link-secondary" href="/accounts/my_password_reset/">password_reset</a></li>
         </ul>
       </div>
       
       <div class="col-6 col-md">
-        <h5>Users</h5>
+        <h5>E</h5>
         <ul class="list-unstyled text-small">
-          <li><a class="link-secondary" href="{% url 'My_Signup_URL' %}">Signup</a></li>  
-          <li><a class="link-secondary" href="{% url 'my_profile_list_URL' %}">Profile List</a></li>  
-
-          
-          
-          
-          
+          <li><a class="link-secondary" href="#">01</a></li>
+          <li><a class="link-secondary" href="#">02</a></li>
+          <li><a class="link-secondary" href="#">03</a></li>
         </ul>
       </div>
       
@@ -100,10 +114,10 @@
           
           <a href="#" class="d-block link-dark text-decoration-none dropdown-toggle" id="dropdownUser1" data-bs-toggle="dropdown" aria-expanded="false">
           <!--  - رابط اللوقو/Logo + الصفحة الرئيسية  -->
-            <img  src="{% static 'Project_logo.png' %}" alt="mdo" width="50" height="50" class="rounded-circle">
-            <!-- <link rel="shortcut icon" type="image/x-icon" href="{% static 'static_file/img/favicon.png' %}"> -->
+            <img  src="/static/Project_logo.png" alt="mdo" width="50" height="50" class="rounded-circle">
+            <!-- <link rel="shortcut icon" type="image/x-icon" href="/static/static_file/img/favicon.png"> -->
           </a>
-          <p>You have visited this page ( {{ number_of_visits_site }} ).</p>
+          <p>You have visited this page (  ).</p>
 
           <ul class="dropdown-menu text-small" aria-labelledby="dropdownUser1">
             <li><a class="dropdown-item" href="#">New project...</a></li>
@@ -125,8 +139,8 @@
       </form>
   
       <div class="text-end">
-        <p> Welcom ( {{ user.username }} ) Thanks For Logging</p>
-        <a  href="{% url 'My_Logout_URL' %}" role="button" style="float:lieft"  class="btn btn-light text-dark me-2">Logout</a><!-- الخروج من الموقع -->
+        <p> Welcom ( jalala ) Thanks For Logging</p>
+        <a  href="/accounts/my_logout/" role="button" style="float:lieft"  class="btn btn-light text-dark me-2">Logout</a><!-- الخروج من الموقع -->
         <a  href="#" role="button" style="float:lieft"  class="btn btn-light text-dark me-2">00</a><!--  -->
       
       </div>
@@ -137,24 +151,16 @@
 </header>
 <!--  Base.html - Header_Page End ------------------------------ -->
 
-{% else %}
-<p>You have visited this page ( {{ number_of_visits_site }} ).</p>
 
-<br>
-  <p>Welcome  Visitor You are Not Logged In</p>
-  <a  href="{% url 'My_Login_URL' %}" role="button" style="float:lieft" class="btn btn-success">Login</a><!-- الدخول إلى الموقع -->
-  <a  href="{% url 'My_Signup_URL' %}" role="button" style="float:lieft" class="btn btn-primary">Signup New</a><!-- الدخول إلى الموقع -->
-
-
-{% endif %}
 
 
 
 
 <!--- Base.html - Title_Page Start  ----------------------------- -->
 <div class="container">
-{% block Page_Title  %} 
-{% endblock Page_Title %}  
+
+<h1>Password Reset Email</h1>
+  
 </div>
 <!--- Base.html - Title_Page End' ------------------------------- -->
 
@@ -165,8 +171,8 @@
 
 <!--- Base.html - Messages_Contenst_Start  ---------------------- -->
 <div class="container">
-{% block messages_Contents  %}
-{% endblock messages_Contents %}  
+
+  
 </div>
 <!--- Base.html - Messages_Contents_End' ----------------------- -->
 
@@ -177,39 +183,45 @@
 
 <!--- Base.html - Contents_Page Start --------------------------- -->
 <div class="container">
-{% block Contents_Page %} 
-{% endblock Contents_Page %} 
+ 
+
+<!-- Required Form + Data Validation -->
+
+
+
+<form enctype="multipart/form-data" " method="post" novalidate>
+    
+        
+        
+        
+            <br>
+            <button type="submit" class="btn btn-success">Ok</button>
+            <a href="/saving/associationlist/" class="btn btn-info">Cancel</a>
+</form>
+ 
+
+ 
 </div>
 <!--- Base.html - Contents_Page End ----------------------------- -->
 
 
-{% block Pagination %}
 
-{% for contact in page_obj %}
-    {# Each "contact" is a Contact model object. #}
-    {{ contact.full_name|upper }}<br>
-    ...
-{% endfor %}
+
+
 
 <div class="pagination">
       <span class="step-links">
-            {% if page_obj.has_previous %}
-            <a href="?page=1"> |< FIRST</a>
-            <a href="?page={{ page_obj.previous_page_number }}"> << PREVIOUS </a>
-            {% endif %}
+            
 
             <span class="current">
-                  Page {{ page_obj.number }} of {{ page_obj.paginator.num_pages }}.
+                  Page  of .
             </span>
 
-            {% if page_obj.has_next %}
-                  <a href="?page={{ page_obj.next_page_number }}"> NEXT >> </a>
-                  <a href="?page={{ page_obj.paginator.num_pages }}"> LAST >|</a>
-            {% endif %}
+            
       </span>
 </div>
 
-  {% endblock Pagination %} 
+   
 
 
 
@@ -252,3 +264,5 @@
     </div>
   </footer>
 <!--- Base.html - Footer_Page End ------------------------------- -->
+
+-------------------------------------------------------------------------------
